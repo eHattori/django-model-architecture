@@ -47,7 +47,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'lala.urls'
+ROOT_URLCONF = 'routes.urls'
 
 TEMPLATES = [
     {
@@ -65,7 +65,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'lala.wsgi.application'
+WSGI_APPLICATION = 'config.wsgi.application'
 
 
 # Database
