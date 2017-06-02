@@ -1,5 +1,9 @@
 # django-model-architecture
 
+requirements
+
+docker
+
 API Rest
 Migrations
 BDD

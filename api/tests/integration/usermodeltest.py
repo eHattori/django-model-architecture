@@ -1,5 +1,6 @@
 from django.test import TestCase
-from api.models.user import User
+from api.models.models import User
+import os
 
 class UserModelTest(TestCase):
     """This class defines the test suite for the user model"""
@@ -7,7 +8,7 @@ class UserModelTest(TestCase):
     def setUp(self):
         """Define the test client and other test variables"""
         self.user_name = "Eduardo"
-        self.user = User(name=self.user_name)
+        self.user = User()
 
     def test_model_can_create_a_user(self):
         """Test the user model can create a User"""

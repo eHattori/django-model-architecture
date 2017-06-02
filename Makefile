@@ -27,7 +27,20 @@ clean:
 
 .PHONY: clean
 
-tests: clean
-	APP_ENV=test pytest --spec --cov-report term-missing --cov=notification tests/
-
+test-integration:
+	@if [ "$(shell sudo docker ps -a | grep 'mysql-test' 2> /dev/null; echo $?)" != "" ]; then\
+		echo "Remove Container"; \
+		sudo docker rm -f mysql-test ;\
+	fi
+	
+	sudo docker run -d --name mysql-test --net host -e MYSQL_ROOT_PASSWORD=root  mysql	
+	@sleep 10
+	sudo docker exec -d mysql-test bash -c 'mysql -h"localhost" -P"3306" -uroot -p"root" <<< "CREATE DATABASE IF NOT EXISTS app_test;"'
+	export OLD_APP_ENV="{$APP_ENV}"
+	export APP_ENV=test
+	#migration	
+	python manage.py test api.tests.integration
+	sudo docker rm -f mysql-test
+	export APP_ENV="${$OLD_APP_ENV}"
+	
 default: setup
