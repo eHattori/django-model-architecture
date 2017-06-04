@@ -1,14 +1,8 @@
 from django.test import TestCase
 from api.domains.user import UserDomain
 import mock
-import pytest
 
 
-import pymysql
-pymysql.install_as_MySQLdb()
-
-
-@pytest.mark.django_db
 class UserDomainTest(TestCase):
 
     def setUp(self):
@@ -19,5 +13,6 @@ class UserDomainTest(TestCase):
         user.first_name = "First name"
         user.last_name = "Last name"
 
-        new_user = self.domain.insert(user)
-        self.assertEqual(new_user, None)
+        self.domain.insert(user)
+        all_users = self.domain.get_all_objects().first()
+        self.assertEqual(all_users.first_name, "First name")
