@@ -8,7 +8,6 @@ from api.serializers.user_serializer import UserSerializer
 class UserServices(APIView):
 
     def get(self, request):
-
         #TO-DO
         return Response(
             "teste",

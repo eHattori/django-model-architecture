@@ -41,6 +41,7 @@ DJANGO_APPS = (
 THIRD_PARTY_APPS = (
     'rest_framework',
     'rest_framework_swagger',
+    'behave_django',
 )
 
 PROJECT_APPS = (
