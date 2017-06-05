@@ -13,6 +13,8 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+VERSION = '0.0.1'
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
@@ -37,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'api',
-    'api.models'
+    'api.models',
+
 ]
 
 MIDDLEWARE = [
@@ -111,6 +114,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+BZTOKEN = os.environ.get('BZTOKEN', ''),
+
 LOGGING = {
     'disable_existing_loggers': False,
     'version': 1,
@@ -120,19 +125,22 @@ LOGGING = {
             'class': 'logging.StreamHandler',
             'level': 'DEBUG', # message level to be written to console
         },
+        'burzum': {
+            'level': 'DEBUG',
+            'class': 'api.utils.log_handler.BurzumHandler',
+            'host': 'log.burzum.appsluiza.com.br',
+            'port': 5030,
+            'bztoken': BZTOKEN
+        },
     },
     'loggers': {
         '': {
-            # this sets root level logger to log debug and higher level
-            # logs to console. All other loggers inherit settings from
-            # root level logger.
-            'handlers': ['console'],
+            'handlers': ['console', 'burzum'],
             'level': 'DEBUG',
-            'propagate': False, # this tells logger to send logging message
-                                # to its parent (will send if set to True)
+            'propagate': False
         },
         'django.db': {
-            # 'handlers': ['console'],
+            # 'handlers': ['console', 'burzum'],
             # 'level': 'DEBUG',
         },
     },

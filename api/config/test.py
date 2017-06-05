@@ -1,5 +1,7 @@
 from .base import *
 
+APP_ENV = 'test'
+
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
