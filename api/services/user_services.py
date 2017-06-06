@@ -8,7 +8,6 @@ from api.serializers.user_serializer import UserSerializer
 class UserServices(APIView):
 
     def get(self, request):
-
         #TO-DO
         return Response(
             "teste",
@@ -16,6 +15,13 @@ class UserServices(APIView):
         )
 
     def post(self, request):
+
+        #TO-DO
+        return Response(
+            "teste",
+            status=status.HTTP_200_OK,
+        )
+    def put(self, request):
 
         #TO-DO
         return Response(
