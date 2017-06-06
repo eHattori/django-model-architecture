@@ -21,4 +21,11 @@ class UserServices(APIView):
             "teste",
             status=status.HTTP_200_OK,
         )
+    def put(self, request):
+
+        #TO-DO
+        return Response(
+            "teste",
+            status=status.HTTP_200_OK,
+        )
 

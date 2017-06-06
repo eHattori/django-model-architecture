@@ -27,3 +27,4 @@ simplejson==3.10.0
 six==1.10.0
 uritemplate==3.0.0
 urllib3==1.21.1
+PyHamcrest==1.9.0
