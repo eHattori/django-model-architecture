@@ -1,6 +1,7 @@
 from .base import *
 
 APP_ENV = 'test'
+TEST_RUNNER = 'api.utils.pytest_runner.PytestTestRunner'
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases

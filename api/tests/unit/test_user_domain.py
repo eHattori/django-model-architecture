@@ -2,7 +2,6 @@ from django.test import TestCase
 from api.domains.user import UserDomain
 import mock
 
-
 class UserDomainTest(TestCase):
 
     def setUp(self):
@@ -12,7 +11,6 @@ class UserDomainTest(TestCase):
         user = mock.Mock()
         user.first_name = "First name"
         user.last_name = "Last name"
-
         user = self.domain.create(user)
 
         self.assertNotEqual(user.id, None)

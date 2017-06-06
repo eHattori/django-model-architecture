@@ -6,7 +6,6 @@ class User(models.Model):
         last_name = models.CharField(max_length=30)
         other_name = models.CharField(max_length=30, null=True)
 
-
         class Meta:
                 db_table = 'users'
 

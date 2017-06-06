@@ -27,16 +27,18 @@ clean:
 
 .PHONY: clean
 
-test:
-    @if [ "$(shell sudo docker ps -a | grep 'mysql-test' 2> /dev/null; echo $?)" != "" ]; then\
+test: clean
+	pip install -r requirements/test.txt;\
+	@if [ "$(shell sudo docker ps -a | grep 'mysql-test' 2> /dev/null; echo $?)" != "" ]; then\
 		echo "Remove Container"; \
 		sudo docker rm -f mysql-test ;\
 	fi
 	sudo docker run -d --name mysql-test --net host -e MYSQL_ROOT_PASSWORD=root  mysql
-	python manage.py test api.tests.unit
+	python manage.py test  --noinput -v 2
 
 run:
 	python manage.py runserver --settings=api.config.development
- 
+create-dev-db:
+	sudo docker exec -d mysql-local bash -c 'mysql -h"localhost" -P"3306" -uroot -p"root" <<< "CREATE DATABASE IF NOT EXISTS $db;"'
 	
 default: setup
