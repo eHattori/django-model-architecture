@@ -7,6 +7,10 @@ help:
 	@echo "        Configure using the ENV."
 	@echo "    clean"
 	@echo "        Clean the cache files."
+	@echo "    migrate"
+	@echo "        Create schema of database."
+	@echo "    run"
+	@echo "        run application in port 8000 ande development env."
 	@echo "    help"
 	@echo "        Show all commands."
 
@@ -38,7 +42,8 @@ test: clean
 
 run:
 	python manage.py runserver --settings=api.config.development
-create-dev-db:
-	sudo docker exec -d mysql-local bash -c 'mysql -h"localhost" -P"3306" -uroot -p"root" <<< "CREATE DATABASE IF NOT EXISTS $db;"'
+migrate:
+	python manage.py makemigrations models
+	python manage.py migrate models
 	
 default: setup

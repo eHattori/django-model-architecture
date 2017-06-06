@@ -15,3 +15,8 @@ DATABASES = {
         'PORT': os.environ.get('DATABASE_PORT', '3306'),
     },
 }
+
+MYSQLPOOL_ARGUMENTS = {
+    'pool_size': int(os.environ.get('POOL_SIZE', 10)),
+    'recycle': int(os.environ.get('POOL_RECYCLE', 300)),
+}
