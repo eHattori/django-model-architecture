@@ -1,3 +1,4 @@
+import logging
 from logging.handlers import SocketHandler
 from logstash import formatter
 from django.conf import settings
@@ -11,6 +12,7 @@ class TransformersFormatter(formatter.LogstashFormatterBase):
             'level': record.levelname,
             'host': self.host,
             'name': record.name,
+            'msg': record.msg,
             'type': self.message_type,
             'version': settings.VERSION,
             'environment': settings.APP_ENV
@@ -51,3 +53,24 @@ class Logging:
                 'body': response_body
             }
         }
+
+
+class Log:
+
+    @staticmethod
+    def info(message):
+        logger = logging.getLogger(__name__)
+        logger.info(message)
+
+    @staticmethod
+    def error(message):
+        logger = logging.getLogger(__name__)
+        logger.error(message)
+
+    @staticmethod
+    def warn(message):
+        logger = logging.getLogger(__name__)
+        logger.warning(message)
+
+
+

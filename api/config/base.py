@@ -121,8 +121,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-BZTOKEN = os.environ.get('BZTOKEN', ''),
-
 LOGGING = {
     'disable_existing_loggers': False,
     'version': 1,
@@ -137,7 +135,7 @@ LOGGING = {
             'class': 'api.utils.log_handler.BurzumHandler',
             'host': 'log.burzum.appsluiza.com.br',
             'port': 5030,
-            'bztoken': BZTOKEN
+            'bztoken': ''
         },
     },
     'loggers': {

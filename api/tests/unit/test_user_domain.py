@@ -2,6 +2,7 @@ from django.test import TestCase
 from api.domains.user import UserDomain
 import mock
 
+
 class UserDomainTest(TestCase):
 
     def setUp(self):
