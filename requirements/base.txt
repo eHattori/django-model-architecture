@@ -8,3 +8,5 @@ six==1.10.0
 packaging==16.8
 appdirs==1.4.3
 requests==2.17.3
+behave==1.2.5
+behave-django==0.5.0

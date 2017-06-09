@@ -30,10 +30,10 @@ class HttpRest:
             if response.ok is False and retry <= parameter.retry:
                 response = HttpRest.execute_request(url, method, parameter, retry+1)
 
-            log.info('REQUEST: [ URL=' + url + ' STATUS_CODE=' + str(response.status_code) +
+            log.info('REQUEST: [ URL=' + url + ' STATUS_CODE=' + str(response.status_code if hasattr(response,'status_code') else 500) +
                      ' TIME=' + str((time.time() - start)) + ']')
 
-            return response.content
+            return response
         except Exception as e:
             raise e
 

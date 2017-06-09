@@ -17,12 +17,23 @@ class HttpRestTest(TestCase):
         except Exception as e:
             pass
 
+    req = mock.Mock()
+    req.ok = True
+    req.status_code = 200
+    
+    @mock.patch('requests.get', mock.Mock(return_value=req))
     def test_get_request_200(self):
 
         parameter = HttpRest.parameter
+
         response = self.http.execute_request("http://www.mocky.io/v2/5185415ba171ea3a00704eed", method=HttpRest.method.GET, parameter=parameter)
         self.assertNotEqual(response, None)
 
+    req = mock.Mock()
+    req.ok = False
+    req.status_code = 500
+
+    @mock.patch('requests.get', mock.Mock(return_value=req))
     def test_get_request_500(self):
 
         parameter = self.http.parameter
