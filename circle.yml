@@ -1,0 +1,32 @@
+version: 1
+machine:
+  environment:
+    ENVIROMENT: ''
+    BZTOKEN: ''
+    DATABASE_NAME: ''
+    DATABASE_USER: ''
+    DATABASE_PASSWORD: ''
+    DATABASE_HOST: ''
+    DATABASE_PORT: ''
+    POOL_SIZE: ''
+    POOL_RECYCLE: ''
+    TERESA_CLUSTER_NAME: ''
+    TERESA_CLUSTER_URL: ''
+    TERESA_PASSWORD: ''
+    TERESA_USER: ''
+    TERESA_APP: ''
+
+dependencies:
+  override:
+      - make setup APP_ENV=$ENVIROMENT
+  post:
+      - sh ./deploy.sh
+
+test:
+  override:
+      - make test
+
+deployment:
+  branch: ''
+  commands:
+      - ./teresa deploy . --app $TERESA_APP --no-input
